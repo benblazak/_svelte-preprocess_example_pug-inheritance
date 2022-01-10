@@ -1,38 +1,24 @@
-# create-svelte
+# pug template inheritance in svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+## problem
 
-## Creating a project
+cannot use pug template inheritance in svelte, using svelte-preprocess
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## test
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
+git clone https://github.com/benblazak/_svelte_preprocess__pug_template_inheritance.git
+cd _svelte_preprocess__pug_template_inheritance
+npm install
 npm run dev -- --open
 ```
 
-## Building
+- try the mixin link
+  - this should work
+- try the template link
+  - this should fail with the error message
+    > Declaration of template inheritance ("extends") should be the first thing in the file. There can only be one extends statement per file.
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+## ideas
 
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+i think the reason `extends ...` is not the first thing in the file is because the svelte mixins are prepended here: https://github.com/sveltejs/svelte-preprocess/blob/main/src/transformers/pug.ts#L68
